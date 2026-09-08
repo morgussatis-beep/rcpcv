@@ -2092,7 +2092,7 @@
   },
   {
     "id": 1788848289137,
-    "isDone": false,
+    "isDone": true,
     "weekOffset": 0,
     "subject": "Егор Матем ЕГЭ",
     "day": 1,
@@ -2194,7 +2194,7 @@
   },
   {
     "id": 1788890805274,
-    "isDone": false,
+    "isDone": true,
     "weekOffset": 0,
     "subject": "Андрей Матем ЕГЭ",
     "day": 1,
