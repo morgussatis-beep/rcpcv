@@ -2176,7 +2176,7 @@
     "color": "orange"
   },
   {
-    "id": 1788858980388,
+    "id": 1788880142313,
     "weekOffset": 1,
     "day": 5,
     "slotIdx": 1,
@@ -2193,7 +2193,7 @@
     "color": "blue"
   },
   {
-    "id": 1788858936755,
+    "id": 1788880223056,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 3,
@@ -2210,7 +2210,7 @@
     "color": "blue"
   },
   {
-    "id": 1788858948224,
+    "id": 1788880136311,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 0,
@@ -2227,7 +2227,7 @@
     "color": "blue"
   },
   {
-    "id": 1788858907198,
+    "id": 1788880201364,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 1,
@@ -2244,7 +2244,7 @@
     "color": "green"
   },
   {
-    "id": 1788858929898,
+    "id": 1788880209476,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 3,
@@ -2255,13 +2255,13 @@
     "type": "лекции",
     "location": "М422, (гибридный формат) Мира, 19",
     "teacher": "Тихонов И.Н. М422, (гибридный формат) Мира, 19",
-    "link": "https://elearn.urfu.ru/course/view.php?id=4539",
+    "link": "https://elearn.urfu.ru/course/view.php?id=4376",
     "homework": "",
     "isDone": false,
     "color": "green"
   },
   {
-    "id": 1788858950317,
+    "id": 1788880143892,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 4,
@@ -2278,7 +2278,7 @@
     "color": "blue"
   },
   {
-    "id": 1788858928430,
+    "id": 1788880126547,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 4,
@@ -2295,7 +2295,7 @@
     "color": "green"
   },
   {
-    "id": 1788858939083,
+    "id": 1788880209246,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 3,
@@ -2312,7 +2312,7 @@
     "color": "green"
   },
   {
-    "id": 1788858931985,
+    "id": 1788880127858,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 5,
@@ -2329,7 +2329,7 @@
     "color": "green"
   },
   {
-    "id": 1788858924138,
+    "id": 1788880136100,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 6,
@@ -2346,7 +2346,7 @@
     "color": "purple"
   },
   {
-    "id": 1788858919854,
+    "id": 1788880144380,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 2,
@@ -2363,7 +2363,7 @@
     "color": "blue"
   },
   {
-    "id": 1788858968707,
+    "id": 1788880207910,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 1,
@@ -2380,7 +2380,7 @@
     "color": "blue"
   },
   {
-    "id": 1788858967628,
+    "id": 1788880151087,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 2,
@@ -2397,7 +2397,7 @@
     "color": "blue"
   },
   {
-    "id": 1788858927011,
+    "id": 1788880147656,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 1,
@@ -2414,7 +2414,7 @@
     "color": "green"
   },
   {
-    "id": 1788858932609,
+    "id": 1788880166091,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 4,
@@ -2431,7 +2431,7 @@
     "color": "green"
   },
   {
-    "id": 1788858938951,
+    "id": 1788880164667,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 0,
@@ -2448,7 +2448,7 @@
     "color": "orange"
   },
   {
-    "id": 1788859002863,
+    "id": 1788880128142,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 1,
@@ -2465,7 +2465,7 @@
     "color": "orange"
   },
   {
-    "id": 1788859003066,
+    "id": 1788880214812,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 2,
@@ -2482,14 +2482,14 @@
     "color": "orange"
   },
   {
-    "id": 1788858910170,
+    "id": 1788880219712,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Андрей Матем ЕГЭ",
-    "day": 1,
-    "slotIdx": 6,
+    "day": 5,
+    "slotIdx": 2,
     "span": 1,
-    "timeStr": "19:30 – 20:30",
+    "timeStr": "12:00 – 13:00",
     "pair": "Занятие",
     "type": "Репетитор",
     "location": "",
@@ -2499,7 +2499,7 @@
     "color": "orange"
   },
   {
-    "id": 1788858992977,
+    "id": 1788880152309,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Егор Матем ЕГЭ",
@@ -2516,14 +2516,14 @@
     "color": "orange"
   },
   {
-    "id": 1788858942080,
+    "id": 1788880160389,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Миша Матем ЕГЭ",
-    "day": 3,
-    "slotIdx": 6,
+    "day": 5,
+    "slotIdx": 2,
     "span": 1,
-    "timeStr": "23:00 – 00:00",
+    "timeStr": "13:00 – 14:00",
     "pair": "Занятие",
     "type": "Репетитор",
     "location": "",
@@ -2533,7 +2533,7 @@
     "color": "orange"
   },
   {
-    "id": 1788858923056,
+    "id": 1788880164430,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Паша Математика ЕГЭ",
@@ -2550,7 +2550,7 @@
     "color": "orange"
   },
   {
-    "id": 1788858984118,
+    "id": 1788880160583,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Богдан Физ ОГЭ",
@@ -2567,7 +2567,7 @@
     "color": "orange"
   },
   {
-    "id": 1788858988998,
+    "id": 1788880212201,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Богдан Физ ОГЭ",
