@@ -2378,5 +2378,22 @@
     "homework": "",
     "isDone": false,
     "color": "blue"
+  },
+  {
+    "id": 1788848109754,
+    "isDone": false,
+    "weekOffset": 0,
+    "subject": "Андрей Матем ЕГЭ",
+    "day": 1,
+    "slotIdx": 6,
+    "span": 1,
+    "timeStr": "19:30 – 20:30",
+    "pair": "1 пара",
+    "type": "Репетитор",
+    "location": "",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "orange"
   }
 ]
