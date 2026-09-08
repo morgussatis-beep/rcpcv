@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ежедневник - Планировщик</title>
+    <style>
+      :root {
+        --bg-color: #121212;
+        --card-bg: #1a1a1a;
+        --border-color: #262626;
+        --accent-orange: #ffa500;
+        --text-gray: #888888;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        background-color: var(--bg-color);
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .header-container {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .journal-title {
+        color: var(--accent-orange);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .planner-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 5px 0 0 0;
+      }
+
+      .github-sync-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #181818;
+        border: 1px solid var(--border-color);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #cccccc;
+      }
+      .github-sync-status:hover {
+        border-color: var(--accent-orange);
+        color: #ffffff;
+      }
+      .sync-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #888;
+      }
+      .sync-dot.synced { background-color: #51cf66; box-shadow: 0 0 8px #51cf66; }
+      .sync-dot.syncing { background-color: #ffa500; animation: pulse 1s infinite; }
+      .sync-dot.error { background-color: #ff6b6b; }
+
+      @keyframes pulse {
+        0% { opacity: 0.4; }
+        50% { opacity: 1; }
+        100% { opacity: 0.4; }
+      }
+
+      .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .nav-buttons { display: flex; gap: 10px; }
+
+      .nav-btn {
+        background-color: #1e1e1e;
+        color: #aaaaaa;
+        border: 1px solid var(--border-color);
+        padding: 9px 18px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .nav-btn.active {
+        background-color: #2a2420;
+        color: #ffffff;
+        border-color: var(--accent-orange);
+      }
+
+      .week-nav-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #181818;
+        padding: 4px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+      }
+
+      .week-nav-btn {
+        background: #222;
+        border: 1px solid var(--border-color);
+        color: #ccc;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: background 0.2s;
+      }
+
+      .week-nav-btn:hover { background: #333; color: #fff; }
+
+      .week-range-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--accent-orange);
+        padding: 0 8px;
+        min-width: 180px;
+        text-align: center;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .add-btn {
+        background-color: var(--accent-orange);
+        color: #000000;
+        font-weight: bold;
+        border: none;
+        padding: 9px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .add-btn:hover { background-color: #ffb733; }
+
+      .import-btn {
+        background-color: #1e2942;
+        color: #61afef;
+        border: 1px solid #2e3f66;
+        font-weight: bold;
+        padding: 9px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .import-btn:hover { background-color: #2e3f66; color: #ffffff; }
+
+      .copy-btn {
+        background-color: #2a2420;
+        color: var(--accent-orange);
+        border: 1px solid var(--accent-orange);
+        font-weight: bold;
+        padding: 9px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .copy-btn:hover { background-color: var(--accent-orange); color: #000000; }
+
+      .clear-btn {
+        background-color: #2d1818;
+        color: #ff6b6b;
+        border: 1px solid #5e2f2f;
+        font-weight: bold;
+        padding: 9px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .clear-btn:hover { background-color: #5e2f2f; color: #ffffff; }
+
+      .date-time-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        padding-bottom: 12px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--accent-orange);
+        font-size: 14px;
+      }
+
+      .today-label { font-weight: 600; color: #ffffff; }
+      .time-badges { display: flex; gap: 10px; }
+
+      .time-badge {
+        background: #1e1e1e;
+        padding: 4px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        font-family: monospace;
+        color: #cccccc;
+      }
+
+      #view-week { width: 100%; max-width: 1200px; overflow-x: auto; }
+      table.week-table { width: 100%; border-collapse: collapse; table-layout: fixed; min-width: 1100px; }
+      th.time-col, td.time-cell { width: 90px; text-align: center; color: var(--text-gray); font-size: 11px; font-weight: bold; }
+      th.day-col { border-bottom: 1px solid var(--border-color); padding: 10px 5px; text-align: center; }
+      .day-name { font-size: 12px; color: var(--text-gray); }
+      .day-num { font-size: 18px; font-weight: bold; }
+      th.day-col.is-today { background-color: #2b2219; border-radius: 8px 8px 0 0; }
+      th.day-col.is-today .day-num { color: var(--accent-orange); }
+
+      td.slot-cell {
+        border: 1px solid var(--border-color);
+        vertical-align: top;
+        padding: 3px;
+        height: 105px;
+      }
+
+      .slot-wrapper {
+        display: flex;
+        gap: 4px;
+        width: 100%;
+        height: 100%;
+      }
+
+      .grid-card {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        border-radius: 8px;
+        padding: 6px 8px;
+        font-size: 11px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        overflow: hidden;
+        transition: filter 0.2s, opacity 0.2s;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+      }
+      .grid-card:hover { filter: brightness(1.25); }
+      .grid-card.is-done { opacity: 0.6; }
+
+      .card-header-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .grid-card-time { font-size: 10px; opacity: 0.85; font-weight: bold; }
+      .grid-card-title { font-weight: 600; margin-top: 2px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+      .grid-card-sub { font-size: 10px; color: #bbb; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+      .hw-badge {
+        font-size: 10px;
+        color: #ffb733;
+        margin-top: 3px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hw-badge.done { color: #51cf66; text-decoration: line-through; }
+
+      .hw-checkbox {
+        cursor: pointer;
+        width: 14px;
+        height: 14px;
+        accent-color: var(--accent-orange);
+      }
+
+      .card-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        background-color: rgba(97, 175, 239, 0.2);
+        color: #61afef;
+        border: 1px solid #2e3f66;
+        padding: 2px 6px;
+        border-radius: 5px;
+        font-size: 10px;
+        text-decoration: none;
+        margin-top: 3px;
+        font-weight: 600;
+        width: fit-content;
+      }
+      .card-link-btn:hover { background-color: #61afef; color: #000; }
+
+      #view-day { width: 100%; max-width: 600px; display: none; flex-direction: column; gap: 15px; }
+
+      .day-selector-strip {
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        background-color: #181818;
+        padding: 8px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+      }
+
+      .day-tab {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 4px;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #222222;
+        color: #888888;
+        transition: all 0.2s;
+      }
+
+      .day-tab:hover {
+        background: #2a2a2a;
+        color: #ffffff;
+      }
+
+      .day-tab.active {
+        background-color: var(--accent-orange);
+        color: #000000;
+        font-weight: bold;
+      }
+
+      .day-tab-name { font-size: 11px; text-transform: uppercase; }
+      .day-tab-num { font-size: 16px; margin-top: 2px; }
+
+      .day-cards-list { display: flex; flex-direction: column; gap: 12px; }
+
+      .day-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--accent-orange);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        cursor: pointer;
+        transition: opacity 0.2s, filter 0.2s;
+      }
+      .day-card.is-done { opacity: 0.6; }
+      .day-card:hover { filter: brightness(1.1); }
+
+      .day-card-header { display: flex; justify-content: space-between; align-items: center; }
+      .day-card-time { font-size: 15px; color: #e0e0e0; font-weight: 500; }
+      .day-card-badge { background-color: #2a2a2a; color: #aaaaaa; padding: 4px 10px; border-radius: 6px; font-size: 12px; border: 1px solid #333; }
+      .day-card-title { font-size: 16px; font-weight: bold; color: #ffffff; }
+      .day-card-type { font-size: 13px; color: var(--text-gray); }
+      .day-card-info { display: flex; flex-direction: column; gap: 5px; font-size: 13px; color: #bbbbbb; }
+      .info-row { display: flex; align-items: center; gap: 8px; }
+
+      .hw-row {
+        background: rgba(255, 165, 0, 0.1);
+        border: 1px solid rgba(255, 165, 0, 0.3);
+        padding: 8px 12px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: #ffb733;
+      }
+      .hw-row.done {
+        background: rgba(81, 207, 102, 0.1);
+        border-color: rgba(81, 207, 102, 0.3);
+        color: #51cf66;
+        text-decoration: line-through;
+      }
+
+      .grid-card.green, .day-card.green { border-left: 3px solid #236356; background-color: #132420; }
+      .grid-card.blue, .day-card.blue { border-left: 3px solid #2e3f66; background-color: #141c2b; }
+      .grid-card.purple, .day-card.purple { border-left: 3px solid #4a3559; background-color: #201726; }
+      .grid-card.red, .day-card.red { border-left: 3px solid #5e2f2f; background-color: #261515; }
+      .grid-card.orange, .day-card.orange { border-left: 3px solid #8c5311; background-color: #382309; }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(4px);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal-box {
+        background-color: #1e1e1e;
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        padding: 24px;
+        width: 100%;
+        max-width: 480px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .modal-title { font-size: 20px; font-weight: bold; color: var(--accent-orange); }
+      .form-group { display: flex; flex-direction: column; gap: 5px; }
+      .form-group label { font-size: 12px; color: var(--text-gray); }
+      .form-control { background-color: #121212; border: 1px solid var(--border-color); color: #ffffff; padding: 10px; border-radius: 8px; outline: none; font-size: 14px; }
+      .form-control:focus { border-color: var(--accent-orange); }
+      .form-row { display: flex; gap: 10px; }
+      .form-row .form-group { flex: 1; }
+
+      .modal-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+      .right-buttons { display: flex; gap: 10px; }
+      .btn-cancel { background: transparent; border: 1px solid var(--border-color); color: #888; padding: 10px 16px; border-radius: 8px; cursor: pointer; }
+      .btn-delete { background: #3a1d1d; border: 1px solid #5e2f2f; color: #ff6b6b; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+      .btn-save { background: var(--accent-orange); color: #000; font-weight: bold; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+
+    <!-- Подсказки -->
+    <datalist id="list-time-str"></datalist>
+    <datalist id="list-pair"></datalist>
+    <datalist id="list-type"></datalist>
+    <datalist id="list-location"></datalist>
+    <datalist id="list-teacher"></datalist>
+    <datalist id="list-subject"></datalist>
+
+    <div class="header-container">
+      <div>
+        <p class="journal-title">Ежедневник</p>
+        <h1 class="planner-title">Планировщик</h1>
+      </div>
+      <div class="github-sync-status" id="btn-open-github" title="Нажмите для настройки синхронизации с GitHub">
+        <span class="sync-dot" id="sync-indicator"></span>
+        <span id="sync-text">GitHub: Не настроен</span>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <div class="nav-buttons">
+        <button class="nav-btn" id="btn-day">День</button>
+        <button class="nav-btn active" id="btn-week">Неделя</button>
+      </div>
+
+      <div class="week-nav-container">
+        <button class="week-nav-btn" id="btn-prev-week">←</button>
+        <button class="week-nav-btn" id="btn-today-week">Текущая</button>
+        <span class="week-range-label" id="week-range-text">...</span>
+        <button class="week-nav-btn" id="btn-next-week">→</button>
+      </div>
+
+      <div class="action-buttons">
+        <button class="import-btn" id="btn-open-import">📅 Импорт из УрФУ (.ics)</button>
+        <button class="clear-btn" id="btn-clear-week">🗑 Стереть неделю</button>
+        <button class="copy-btn" id="btn-copy-week">📋 Скопировать неделю</button>
+        <button class="add-btn" id="btn-add-event"><span>+</span> Добавить пару</button>
+      </div>
+    </div>
+
+    <div class="date-time-container">
+      <span class="today-label" id="today-date-text">Сегодня: ...</span>
+      <div class="time-badges">
+        <span id="utc5-time" class="time-badge">UTC+5: --:--</span>
+        <span id="utc3-time" class="time-badge">UTC+3: --:--</span>
+      </div>
+    </div>
+
+    <!-- Режим Неделя -->
+    <div id="view-week">
+      <table class="week-table">
+        <thead>
+          <tr id="week-table-header"></tr>
+        </thead>
+        <tbody id="week-table-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Режим День -->
+    <div id="view-day">
+      <div class="day-selector-strip" id="day-strip"></div>
+      <div class="day-cards-list" id="day-cards-container"></div>
+    </div>
+
+    <!-- ОКНО НАСТРОЕК GITHUB -->
+    <div class="modal-overlay" id="modal-github">
+      <div class="modal-box">
+        <div class="modal-title">⚙️ Синхронизация с GitHub</div>
+        <p style="font-size: 12px; color: #aaa; margin: 0; line-height: 1.4;">
+          Расписание будет автоматически читаться и сохраняться в <b>schedule.json</b> вашего репозитория.
+        </p>
+
+        <div class="form-group">
+          <label>Репозиторий (формат: <i>логин/имя-репозитория</i>)</label>
+          <input type="text" id="inp-gh-repo" class="form-control" placeholder="например: ivan/my-schedule">
+        </div>
+
+        <div class="form-group">
+          <label>GitHub Personal Access Token (PAT)</label>
+          <input type="password" id="inp-gh-token" class="form-control" placeholder="ghp_xxxxxxxxxxxxxx">
+          <small style="font-size: 10px; color: #777;">Нужен токен с правом write на contents (сохраняется в локальном браузере).</small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ветка (Branch)</label>
+            <input type="text" id="inp-gh-branch" class="form-control" value="main">
+          </div>
+          <div class="form-group">
+            <label>Имя файла</label>
+            <input type="text" id="inp-gh-path" class="form-control" value="schedule.json">
+          </div>
+        </div>
+
+        <div class="modal-buttons">
+          <button class="btn-cancel" id="btn-close-github">Закрыть</button>
+          <button class="btn-save" id="btn-save-github">Сохранить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ИМПОРТ .ICS -->
+    <div class="modal-overlay" id="modal-import">
+      <div class="modal-box">
+        <div class="modal-title">Импорт расписания из УрФУ</div>
+        <p style="font-size: 12px; color: #aaa; margin:0;">
+          Скачайте файл <b>calendar.ics</b> с сайта <a href="https://istudent.urfu.ru/s/schedule" target="_blank" style="color:var(--accent-orange)">istudent.urfu.ru</a> и выберите его.
+        </p>
+
+        <div class="form-group">
+          <label>Файл calendar.ics</label>
+          <input type="file" id="inp-ics-file" accept=".ics,text/calendar" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Или вставьте ссылку на .ics</label>
+          <input type="text" id="inp-ics-url" class="form-control" placeholder="https://istudent.urfu.ru/...">
+        </div>
+
+        <div class="form-group">
+          <label>Или вставьте текст файла .ics</label>
+          <textarea id="inp-ics-text" class="form-control" rows="3" placeholder="BEGIN:VCALENDAR..."></textarea>
+        </div>
+
+        <div class="modal-buttons">
+          <div></div>
+          <div class="right-buttons">
+            <button class="btn-cancel" id="btn-close-import">Отмена</button>
+            <button class="btn-save" id="btn-submit-import">Импортировать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- РЕДАКТИРОВАНИЕ ПАРЫ -->
+    <div class="modal-overlay" id="modal-add">
+      <div class="modal-box">
+        <div class="modal-title" id="modal-heading">Новая пара / событие</div>
+
+        <div class="form-group">
+          <label>Название предмета</label>
+          <input type="text" id="inp-subject" class="form-control" list="list-subject" placeholder="Детали машин">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>День недели</label>
+            <select id="inp-day" class="form-control">
+              <option value="0">Понедельник</option>
+              <option value="1">Вторник</option>
+              <option value="2">Среда</option>
+              <option value="3">Четверг</option>
+              <option value="4">Пятница</option>
+              <option value="5">Суббота</option>
+              <option value="6">Воскресенье</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Время проведения</label>
+            <input type="text" id="inp-time-str" class="form-control" list="list-time-str" placeholder="10:15 – 11:45">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Номер пары</label>
+            <input type="text" id="inp-pair" class="form-control" list="list-pair" placeholder="1 пара">
+          </div>
+          <div class="form-group">
+            <label>Тип занятия</label>
+            <input type="text" id="inp-type" class="form-control" list="list-type" placeholder="Практические занятия / Лекция">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Аудитория</label>
+            <input type="text" id="inp-location" class="form-control" list="list-location" placeholder="М526 Мира, 19">
+          </div>
+          <div class="form-group">
+            <label>Преподаватель</label>
+            <input type="text" id="inp-teacher" class="form-control" list="list-teacher" placeholder="Парышев С.В.">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ссылка на онлайн-занятие (BBB, Teams и т.д.)</label>
+          <input type="text" id="inp-link" class="form-control" placeholder="https://bbb.urfu.ru/rooms/...">
+        </div>
+
+        <div class="form-group">
+          <label>📝 Домашнее задание</label>
+          <input type="text" id="inp-homework" class="form-control" placeholder="Решить задачи №4, №5 из методички">
+        </div>
+
+        <div class="form-group">
+          <label>Цвет плашки</label>
+          <select id="inp-color" class="form-control">
+            <option value="green">Бирюзовый (Зеленый)</option>
+            <option value="blue">Синий</option>
+            <option value="purple">Фиолетовый</option>
+            <option value="red">Красно-коричневый</option>
+            <option value="orange">Оранжевый</option>
+          </select>
+        </div>
+
+        <div class="modal-buttons">
+          <button class="btn-delete" id="btn-delete-event" style="display: none;">Удалить</button>
+          <div class="right-buttons">
+            <button class="btn-cancel" id="btn-cancel-modal">Отмена</button>
+            <button class="btn-save" id="btn-save-event">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let events = [];
+      let currentWeekOffset = 0;
+      let activeDayIndex = 0;
+      let currentView = 'week';
+      let editingEventId = null;
+      let currentFileSha = null;
+
+      // 12-слотовая сетка для исключения наложения пар
+      const slotsConfig = [
+        { label: '08:30 – 10:00', startMins: 510 },
+        { label: '10:15 – 11:45', startMins: 615 },
+        { label: '12:00 – 13:30', startMins: 720 },
+        { label: '14:15 – 15:45', startMins: 855 },
+        { label: '15:15 – 16:45', startMins: 915 },
+        { label: '16:10 – 17:40', startMins: 970 },
+        { label: '17:00 – 18:30', startMins: 1020 },
+        { label: '18:00 – 19:30', startMins: 1080 },
+        { label: '19:15 – 20:45', startMins: 1155 },
+        { label: '19:40 – 21:10', startMins: 1180 },
+        { label: '21:00 – 22:30', startMins: 1260 },
+        { label: '22:40 – 00:10', startMins: 1360 }
+      ];
+
+      // Элементы UI
+      const btnDay = document.getElementById('btn-day');
+      const btnWeek = document.getElementById('btn-week');
+      const viewWeek = document.getElementById('view-week');
+      const viewDay = document.getElementById('view-day');
+      const modalAdd = document.getElementById('modal-add');
+      const btnAddEvent = document.getElementById('btn-add-event');
+      const btnCancelModal = document.getElementById('btn-cancel-modal');
+      const btnSaveEvent = document.getElementById('btn-save-event');
+      const btnDeleteEvent = document.getElementById('btn-delete-event');
+      const btnCopyWeek = document.getElementById('btn-copy-week');
+      const btnClearWeek = document.getElementById('btn-clear-week');
+      const modalHeading = document.getElementById('modal-heading');
+
+      const btnOpenImport = document.getElementById('btn-open-import');
+      const modalImport = document.getElementById('modal-import');
+      const btnCloseImport = document.getElementById('btn-close-import');
+      const btnSubmitImport = document.getElementById('btn-submit-import');
+
+      const btnPrevWeek = document.getElementById('btn-prev-week');
+      const btnNextWeek = document.getElementById('btn-next-week');
+      const btnTodayWeek = document.getElementById('btn-today-week');
+
+      const btnOpenGithub = document.getElementById('btn-open-github');
+      const modalGithub = document.getElementById('modal-github');
+      const btnCloseGithub = document.getElementById('btn-close-github');
+      const btnSaveGithub = document.getElementById('btn-save-github');
+      const syncIndicator = document.getElementById('sync-indicator');
+      const syncText = document.getElementById('sync-text');
+
+      function getSlotIndexByMins(mins) {
+        let bestIdx = 0;
+        let minDiff = Infinity;
+        for (let i = 0; i < slotsConfig.length; i++) {
+          const diff = Math.abs(slotsConfig[i].startMins - mins);
+          if (diff < minDiff) {
+            minDiff = diff;
+            bestIdx = i;
+          }
+        }
+        return bestIdx;
+      }
+
+      function getSlotIndexFromTime(timeStr) {
+        if (!timeStr || timeStr.includes("Асинхронно") || timeStr.includes("Онлайн")) return 0;
+        const match = timeStr.match(/(\d{1,2}):(\d{2})/);
+        if (match) {
+          const h = parseInt(match[1]);
+          const m = parseInt(match[2]);
+          return getSlotIndexByMins(h * 60 + m);
+        }
+        return 0;
+      }
+
+      function getMonday(date) {
+        const d = new Date(date);
+        const day = (d.getDay() + 6) % 7;
+        d.setDate(d.getDate() - day);
+        d.setHours(0, 0, 0, 0);
+        return d;
+      }
+
+      function getWeekDates(offset = 0) {
+        const now = new Date();
+        const currentDayOfWeek = (now.getDay() + 6) % 7;
+        const monday = new Date(now);
+        monday.setDate(now.getDate() - currentDayOfWeek + (offset * 7));
+        monday.setHours(0, 0, 0, 0);
+
+        const dates = [];
+        const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+        for (let i = 0; i < 7; i++) {
+          const d = new Date(monday);
+          d.setDate(monday.getDate() + i);
+          dates.push({
+            name: dayNames[i],
+            num: d.getDate(),
+            fullDateStr: d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' }),
+            isToday: isSameDay(d, new Date())
+          });
+        }
+        return { dates, monday, sunday: new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6) };
+      }
+
+      function isSameDay(d1, d2) {
+        return d1.getFullYear() === d2.getFullYear() &&
+               d1.getMonth() === d2.getMonth() &&
+               d1.getDate() === d2.getDate();
+      }
+
+      // --- НАСТРОЙКИ GITHUB ---
+      function getGithubConfig() {
+        return {
+          repo: localStorage.getItem('gh_repo') || '',
+          token: localStorage.getItem('gh_token') || '',
+          branch: localStorage.getItem('gh_branch') || 'main',
+          path: localStorage.getItem('gh_path') || 'schedule.json'
+        };
+      }
+
+      function setSyncStatus(status, text) {
+        syncIndicator.className = 'sync-dot ' + status;
+        syncText.textContent = text;
+      }
+
+      btnOpenGithub.addEventListener('click', () => {
+        const conf = getGithubConfig();
+        document.getElementById('inp-gh-repo').value = conf.repo;
+        document.getElementById('inp-gh-token').value = conf.token;
+        document.getElementById('inp-gh-branch').value = conf.branch;
+        document.getElementById('inp-gh-path').value = conf.path;
+        modalGithub.style.display = 'flex';
+      });
+
+      btnCloseGithub.addEventListener('click', () => { modalGithub.style.display = 'none'; });
+
+      btnSaveGithub.addEventListener('click', async () => {
+        const repo = document.getElementById('inp-gh-repo').value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '');
+        const token = document.getElementById('inp-gh-token').value.trim();
+        const branch = document.getElementById('inp-gh-branch').value.trim() || 'main';
+        const path = document.getElementById('inp-gh-path').value.trim() || 'schedule.json';
+
+        localStorage.setItem('gh_repo', repo);
+        localStorage.setItem('gh_token', token);
+        localStorage.setItem('gh_branch', branch);
+        localStorage.setItem('gh_path', path);
+
+        modalGithub.style.display = 'none';
+        await loadEvents();
+      });
+
+      // Чтение расписания (GitHub API -> schedule.json -> localStorage)
+      async function loadEvents() {
+        const conf = getGithubConfig();
+
+        if (conf.repo) {
+          setSyncStatus('syncing', 'GitHub: Загрузка...');
+          try {
+            const url = `https://api.github.com/repos/${conf.repo}/contents/${conf.path}?ref=${conf.branch}&_t=${Date.now()}`;
+            const headers = { 'Accept': 'application/vnd.github.v3+json' };
+            if (conf.token) headers['Authorization'] = `token ${conf.token}`;
+
+            const res = await fetch(url, { headers });
+            if (res.ok) {
+              const data = await res.json();
+              currentFileSha = data.sha;
+              const contentDecoded = decodeURIComponent(escape(atob(data.content.replace(/\s/g, ''))));
+              events = JSON.parse(contentDecoded);
+              localStorage.setItem('urfu_schedule_events', JSON.stringify(events));
+              setSyncStatus('synced', 'GitHub: Синхронизировано');
+              updateDatalists();
+              renderCurrentView();
+              return;
+            } else if (res.status === 404) {
+              currentFileSha = null;
+              setSyncStatus('synced', 'GitHub: Файл готов к созданию');
+            } else {
+              throw new Error(`Ошибка GitHub API: ${res.statusText}`);
+            }
+          } catch (e) {
+            console.warn("Не удалось загрузить из GitHub API, пробуем локально", e);
+            setSyncStatus('error', 'GitHub: Ошибка загрузки');
+          }
+        }
+
+        try {
+          const res = await fetch('schedule.json?_t=' + Date.now());
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data)) {
+              events = data;
+              updateDatalists();
+              renderCurrentView();
+              return;
+            }
+          }
+        } catch (e) {}
+
+        const saved = localStorage.getItem('urfu_schedule_events');
+        events = saved ? JSON.parse(saved) : [];
+        if (!conf.repo) setSyncStatus('', 'Локальный режим (настроить GitHub)');
+        updateDatalists();
+        renderCurrentView();
+      }
+
+      // Сохранение в GitHub репозиторий + localStorage
+      async function saveEvents() {
+        localStorage.setItem('urfu_schedule_events', JSON.stringify(events));
+        updateDatalists();
+
+        const conf = getGithubConfig();
+        if (!conf.repo || !conf.token) {
+          if (!conf.repo) setSyncStatus('', 'Сохранено локально');
+          else setSyncStatus('error', 'Нужен Token для записи');
+          return;
+        }
+
+        setSyncStatus('syncing', 'GitHub: Сохранение...');
+        try {
+          const utf8Str = unescape(encodeURIComponent(JSON.stringify(events, null, 2)));
+          const base64Content = btoa(utf8Str);
+
+          const url = `https://api.github.com/repos/${conf.repo}/contents/${conf.path}`;
+          const bodyPayload = {
+            message: "Update schedule.json via Web Planner [skip ci]",
+            content: base64Content,
+            branch: conf.branch
+          };
+          if (currentFileSha) bodyPayload.sha = currentFileSha;
+
+          const res = await fetch(url, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${conf.token}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bodyPayload)
+          });
+
+          if (res.ok) {
+            const resData = await res.json();
+            currentFileSha = resData.content?.sha || null;
+            setSyncStatus('synced', 'GitHub: Синхронизировано');
+          } else {
+            const err = await res.json();
+            console.error(err);
+            setSyncStatus('error', 'Ошибка сохранения в GitHub');
+          }
+        } catch (e) {
+          console.error("Ошибка при отправке в GitHub:", e);
+          setSyncStatus('error', 'GitHub: Ошибка сети');
+        }
+      }
+
+      function updateDatalists() {
+        const getUnique = (key) => [...new Set(events.map(e => e[key]).filter(Boolean))];
+        fillDatalist('list-subject', getUnique('subject'));
+        fillDatalist('list-time-str', getUnique('timeStr'));
+        fillDatalist('list-pair', getUnique('pair'));
+        fillDatalist('list-type', getUnique('type'));
+        fillDatalist('list-location', getUnique('location'));
+        fillDatalist('list-teacher', getUnique('teacher'));
+      }
+
+      function fillDatalist(id, values) {
+        const dl = document.getElementById(id);
+        if (!dl) return;
+        dl.innerHTML = '';
+        values.forEach(v => {
+          const opt = document.createElement('option');
+          opt.value = v;
+          dl.appendChild(opt);
+        });
+      }
+
+      async function toggleDoneStatus(eventId, e) {
+        if (e) e.stopPropagation();
+        const ev = events.find(item => item.id === eventId);
+        if (ev) {
+          ev.isDone = !ev.isDone;
+          await saveEvents();
+          renderCurrentView();
+        }
+      }
+
+      // --- ПАРСЕР .ICS (УРФУ) ---
+      function parseIcsContent(icsText) {
+        const parsedEvents = [];
+        const unfolded = icsText.replace(/\r\n[ \t]|\r[ \t]|\n[ \t]/g, '');
+        const vevents = unfolded.match(/BEGIN:VEVENT[\s\S]*?END:VEVENT/gi) || [];
+
+        const now = new Date();
+        const currentMonday = getMonday(now);
+
+        const occupiedSlots = {};
+        const isSlotOccupied = (w, d, s) => occupiedSlots[w]?.[d]?.[s] || false;
+        const markSlotOccupied = (w, d, s) => {
+          if (!occupiedSlots[w]) occupiedSlots[w] = {};
+          if (!occupiedSlots[w][d]) occupiedSlots[w][d] = {};
+          occupiedSlots[w][d][s] = true;
+        };
+
+        vevents.forEach((vev, idx) => {
+          const getField = (name) => {
+            const reg = new RegExp(`(?:^|\\r?\\n)${name}(?:;[^:]*)?:(.*)`, 'i');
+            const m = vev.match(reg);
+            return m ? m[1].trim() : '';
+          };
+
+          const rawSummary = getField('SUMMARY').replace(/\\,/g, ',');
+          const dtstartRaw = getField('DTSTART');
+          const dtendRaw = getField('DTEND');
+          const locRaw = getField('LOCATION');
+          const descRaw = getField('DESCRIPTION');
+
+          if (!rawSummary || !dtstartRaw) return;
+
+          const dtMatch = dtstartRaw.match(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z?)/);
+          if (!dtMatch) return;
+
+          const y = parseInt(dtMatch[1]), mo = parseInt(dtMatch[2]) - 1, d = parseInt(dtMatch[3]);
+          const h = parseInt(dtMatch[4]), mi = parseInt(dtMatch[5]), s = parseInt(dtMatch[6]);
+
+          let dtStartLocal;
+          if (dtMatch[7] === 'Z') {
+            const dtUtc = new Date(Date.UTC(y, mo, d, h, mi, s));
+            dtStartLocal = new Date(dtUtc.getTime() + 5 * 3600000);
+          } else if (vev.includes('Asia/Yekaterinburg') || dtstartRaw.includes('Asia/Yekaterinburg')) {
+            dtStartLocal = new Date(y, mo, d, h, mi, s);
+          } else {
+            const dtUtc = new Date(Date.UTC(y, mo, d, h, mi, s));
+            dtStartLocal = new Date(dtUtc.getTime() + 5 * 3600000);
+          }
+
+          let dtEndLocal;
+          const endMatch = dtendRaw.match(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z?)/);
+          if (endMatch) {
+            const ey = parseInt(endMatch[1]), emo = parseInt(endMatch[2]) - 1, ed = parseInt(endMatch[3]);
+            const eh = parseInt(endMatch[4]), emi = parseInt(endMatch[5]), es = parseInt(endMatch[6]);
+            if (endMatch[7] === 'Z') {
+              const endUtc = new Date(Date.UTC(ey, emo, ed, eh, emi, es));
+              dtEndLocal = new Date(endUtc.getTime() + 5 * 3600000);
+            } else if (vev.includes('Asia/Yekaterinburg') || dtendRaw.includes('Asia/Yekaterinburg')) {
+              dtEndLocal = new Date(ey, emo, ed, eh, emi, es);
+            } else {
+              const endUtc = new Date(Date.UTC(ey, emo, ed, eh, emi, es));
+              dtEndLocal = new Date(endUtc.getTime() + 5 * 3600000);
+            }
+          } else {
+            dtEndLocal = new Date(dtStartLocal.getTime() + 90 * 60000);
+          }
+
+          const pairMatch = rawSummary.match(/^(\d+)\.\s*(.*)/);
+          let pairBadge = "Пара";
+          let subjectClean = rawSummary;
+          if (pairMatch) {
+            const pNum = pairMatch[1];
+            subjectClean = pairMatch[2];
+            pairBadge = pNum !== "0" ? `${pNum} пара` : "Онлайн";
+          }
+
+          const combinedText = (descRaw + " " + locRaw)
+            .replace(/\\n/g, "\n")
+            .replace(/\\,/g, ",")
+            .replace(/\\;/g, ";")
+            .replace(/\\/g, "");
+
+          let linkUrl = "";
+          const urlMatch = combinedText.match(/https?:\/\/[^\s<>\"']+/);
+          if (urlMatch) {
+            linkUrl = urlMatch[0].replace(/[.,;)]+$/, "");
+          }
+
+          const cleanDescText = combinedText.replace(linkUrl, "").trim();
+          const lines = cleanDescText.split("\n").map(l => l.trim()).filter(Boolean);
+          const lessonType = lines[0] || "Занятие";
+          const teacher = lines[1] || "";
+
+          const eventMonday = getMonday(dtStartLocal);
+          const weekOffset = Math.round((eventMonday.getTime() - currentMonday.getTime()) / (7 * 86400000));
+          const dayIdx = (dtStartLocal.getDay() + 6) % 7;
+
+          const isAsync = rawSummary.includes("0.") ||
+                          combinedText.toLowerCase().includes("openedu") ||
+                          combinedText.toLowerCase().includes("teamproject");
+
+          let timeStr, slotIdx, color;
+          if (isAsync) {
+            timeStr = "Асинхронно / Онлайн";
+            let findSlot = 0;
+            while (isSlotOccupied(weekOffset, dayIdx, findSlot) && findSlot < slotsConfig.length - 1) findSlot++;
+            slotIdx = findSlot;
+            color = "orange";
+          } else {
+            const pad = n => String(n).padStart(2, '0');
+            timeStr = `${pad(dtStartLocal.getHours())}:${pad(dtStartLocal.getMinutes())} – ${pad(dtEndLocal.getHours())}:${pad(dtEndLocal.getMinutes())}`;
+            const startMins = dtStartLocal.getHours() * 60 + dtStartLocal.getMinutes();
+            slotIdx = getSlotIndexByMins(startMins);
+
+            const comb = (subjectClean + " " + lessonType).toLowerCase();
+            if (comb.includes("лекци")) color = "green";
+            else if (comb.includes("лаб")) color = "purple";
+            else if (comb.includes("практ") || comb.includes("физическая культура")) color = "blue";
+            else color = "green";
+          }
+
+          markSlotOccupied(weekOffset, dayIdx, slotIdx);
+
+          const locDisplay = locRaw.replace(/\\n/g, " ").replace(/\\,/g, ",").replace(/\\/g, "").trim();
+
+          parsedEvents.push({
+            id: dtStartLocal.getTime() + idx,
+            weekOffset,
+            day: dayIdx,
+            slotIdx,
+            span: 1,
+            timeStr,
+            pair: pairBadge,
+            subject: subjectClean,
+            type: lessonType,
+            location: locDisplay,
+            teacher,
+            link: linkUrl,
+            homework: "",
+            isDone: false,
+            color
+          });
+        });
+
+        return parsedEvents;
+      }
+
+      // Импорт
+      btnOpenImport.addEventListener('click', () => { modalImport.style.display = 'flex'; });
+      btnCloseImport.addEventListener('click', () => { modalImport.style.display = 'none'; });
+
+      btnSubmitImport.addEventListener('click', async () => {
+        const fileInp = document.getElementById('inp-ics-file');
+        const urlInp = document.getElementById('inp-ics-url').value.trim();
+        const textInp = document.getElementById('inp-ics-text').value.trim();
+
+        if (fileInp.files.length > 0) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            applyParsedIcs(e.target.result);
+          };
+          reader.readAsText(fileInp.files[0]);
+        } else if (urlInp) {
+          try {
+            let resText = "";
+            try {
+              const res = await fetch(urlInp);
+              resText = await res.text();
+            } catch (err) {
+              const proxyRes = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(urlInp)}`);
+              resText = await proxyRes.text();
+            }
+            applyParsedIcs(resText);
+          } catch (e) {
+            alert('Не удалось скачать расписание по ссылке. Скачайте файл .ics и выберите его.');
+          }
+        } else if (textInp) {
+          applyParsedIcs(textInp);
+        } else {
+          alert('Выберите файл .ics или вставьте ссылку / текст!');
+        }
+      });
+
+      async function applyParsedIcs(icsText) {
+        const parsed = parseIcsContent(icsText);
+        if (parsed.length === 0) {
+          alert('Не удалось найти пары в файле .ics.');
+          return;
+        }
+
+        const existingIds = new Set(events.map(e => e.id));
+        let addedCount = 0;
+        parsed.forEach(pe => {
+          if (!existingIds.has(pe.id)) {
+            events.push(pe);
+            addedCount++;
+          }
+        });
+
+        modalImport.style.display = 'none';
+        await saveEvents();
+        renderCurrentView();
+        alert(`Успешно добавлено ${addedCount} новых пар!`);
+      }
+
+      // СТЕРЕТЬ
+      btnClearWeek.addEventListener('click', async () => {
+        const currentWeekEvents = events.filter(e => (e.weekOffset ?? 0) === currentWeekOffset);
+
+        if (events.length === 0) {
+          alert('База расписания пуста!');
+          return;
+        }
+
+        const action = prompt(
+          `Выберите действие:\n1 — Стереть пары ТОЛЬКО ТЕКУЩЕЙ недели (${currentWeekEvents.length} шт.)\n2 — Стереть АБСОЛЮТНО ВСЕ недели\n\nВведите 1 или 2:`,
+          "1"
+        );
+
+        if (action === "1") {
+          events = events.filter(e => (e.weekOffset ?? 0) !== currentWeekOffset);
+          await saveEvents();
+          renderCurrentView();
+        } else if (action === "2") {
+          if (confirm('Вы уверены, что хотите ПОЛНОСТЬЮ очистить всё расписание?')) {
+            events = [];
+            await saveEvents();
+            renderCurrentView();
+          }
+        }
+      });
+
+      // КОПИРОВАНИЕ НЕДЕЛИ
+      btnCopyWeek.addEventListener('click', async () => {
+        const currentWeekEvents = events.filter(e => (e.weekOffset ?? 0) === currentWeekOffset);
+
+        if (currentWeekEvents.length === 0) {
+          alert('На текущей неделе нет пар!');
+          return;
+        }
+
+        const targetWeekOffset = currentWeekOffset + 1;
+        const targetEvents = events.filter(e => (e.weekOffset ?? 0) === targetWeekOffset);
+
+        if (targetEvents.length > 0) {
+          if (!confirm(`На следующей неделе уже есть ${targetEvents.length} пар. Очистить их и скопировать расписание заново?`)) {
+            return;
+          }
+          events = events.filter(e => (e.weekOffset ?? 0) !== targetWeekOffset);
+        } else {
+          if (!confirm(`Скопировать ${currentWeekEvents.length} пар на следующую неделю?`)) return;
+        }
+
+        currentWeekEvents.forEach(e => {
+          events.push({
+            ...e,
+            id: Date.now() + Math.floor(Math.random() * 100000),
+            weekOffset: targetWeekOffset,
+            isDone: false
+          });
+        });
+
+        await saveEvents();
+        currentWeekOffset = targetWeekOffset;
+        renderCurrentView();
+      });
+
+      btnPrevWeek.addEventListener('click', () => { currentWeekOffset--; renderCurrentView(); });
+      btnNextWeek.addEventListener('click', () => { currentWeekOffset++; renderCurrentView(); });
+      btnTodayWeek.addEventListener('click', () => {
+        currentWeekOffset = 0;
+        const now = new Date();
+        activeDayIndex = (now.getDay() + 6) % 7;
+        renderCurrentView();
+      });
+
+      btnDay.addEventListener('click', () => {
+        currentView = 'day';
+        btnDay.classList.add('active');
+        btnWeek.classList.remove('active');
+        viewWeek.style.display = 'none';
+        viewDay.style.display = 'flex';
+        renderCurrentView();
+      });
+
+      btnWeek.addEventListener('click', () => {
+        currentView = 'week';
+        btnWeek.classList.add('active');
+        btnDay.classList.remove('active');
+        viewDay.style.display = 'none';
+        viewWeek.style.display = 'block';
+        renderCurrentView();
+      });
+
+      function renderCurrentView() {
+        updateDateHeaderUI();
+        if (currentView === 'week') {
+          viewDay.style.display = 'none';
+          viewWeek.style.display = 'block';
+          renderWeekView();
+        } else {
+          viewWeek.style.display = 'none';
+          viewDay.style.display = 'flex';
+          renderDayView();
+        }
+      }
+
+      function updateDateHeaderUI() {
+        const { monday, sunday } = getWeekDates(currentWeekOffset);
+        const mStr = monday.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' });
+        const sStr = sunday.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
+        document.getElementById('week-range-text').textContent = `${mStr} – ${sStr}`;
+
+        const now = new Date();
+        const todayStr = now.toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('today-date-text').textContent = `Сегодня: ${todayStr}`;
+      }
+
+      // РЕНДЕР "НЕДЕЛЯ"
+      function renderWeekView() {
+        const { dates } = getWeekDates(currentWeekOffset);
+        const headerTr = document.getElementById('week-table-header');
+        headerTr.innerHTML = '<th class="time-col"></th>';
+        dates.forEach(d => {
+          const th = document.createElement('th');
+          th.className = `day-col ${d.isToday ? 'is-today' : ''}`;
+          th.innerHTML = `<div class="day-name">${d.name}</div><div class="day-num">${d.num}</div>`;
+          headerTr.appendChild(th);
+        });
+
+        const tbody = document.getElementById('week-table-body');
+        tbody.innerHTML = '';
+
+        slotsConfig.forEach((slot, sIdx) => {
+          const tr = document.createElement('tr');
+          const tdTime = document.createElement('td');
+          tdTime.className = 'time-cell';
+          tdTime.textContent = slot.label;
+          tr.appendChild(tdTime);
+
+          for (let d = 0; d < 7; d++) {
+            const td = document.createElement('td');
+            td.className = 'slot-cell';
+
+            const slotEvents = events.filter(e =>
+              (e.weekOffset ?? 0) === currentWeekOffset &&
+              e.day === d &&
+              (e.slotIdx ?? getSlotIndexFromTime(e.timeStr)) === sIdx
+            );
+
+            if (slotEvents.length > 0) {
+              const wrapper = document.createElement('div');
+              wrapper.className = 'slot-wrapper';
+
+              slotEvents.forEach(ev => {
+                const card = document.createElement('div');
+                card.className = `grid-card ${ev.color} ${ev.isDone ? 'is-done' : ''}`;
+                card.style.backgroundColor = getBgColor(ev.color);
+                card.style.border = `1px solid ${getBorderColor(ev.color)}`;
+                card.innerHTML = `
+                  <div>
+                    <div class="card-header-line">
+                      <span class="grid-card-time">${ev.timeStr || ''}</span>
+                      <input type="checkbox" class="hw-checkbox" ${ev.isDone ? 'checked' : ''} onclick="toggleDoneStatus(${ev.id}, event)" title="Отметить как выполненное">
+                    </div>
+                    <div class="grid-card-title">${ev.subject}</div>
+                    ${ev.location ? `<div class="grid-card-sub">📍 ${ev.location}</div>` : ''}
+                    ${ev.homework ? `<div class="hw-badge ${ev.isDone ? 'done' : ''}">📝 ${ev.homework}</div>` : ''}
+                  </div>
+                  ${ev.link ? `<a href="${ev.link}" target="_blank" class="card-link-btn" onclick="event.stopPropagation()">🔗 Ссылка</a>` : ''}
+                `;
+                card.addEventListener('click', () => openModalForEdit(ev));
+                wrapper.appendChild(card);
+              });
+
+              td.appendChild(wrapper);
+            }
+
+            tr.appendChild(td);
+          }
+          tbody.appendChild(tr);
+        });
+      }
+
+      // РЕНДЕР "ДЕНЬ"
+      function renderDayView() {
+        const { dates } = getWeekDates(currentWeekOffset);
+        const dayStrip = document.getElementById('day-strip');
+        dayStrip.innerHTML = '';
+
+        dates.forEach((d, idx) => {
+          const tab = document.createElement('div');
+          tab.className = `day-tab ${idx === activeDayIndex ? 'active' : ''}`;
+          tab.innerHTML = `<div class="day-tab-name">${d.name}</div><div class="day-tab-num">${d.num}</div>`;
+          tab.addEventListener('click', () => {
+            activeDayIndex = idx;
+            renderDayView();
+          });
+          dayStrip.appendChild(tab);
+        });
+
+        const container = document.getElementById('day-cards-container');
+        container.innerHTML = '';
+
+        const dayEvents = events.filter(e => (e.weekOffset ?? 0) === currentWeekOffset && e.day === activeDayIndex);
+
+        if (dayEvents.length === 0) {
+          container.innerHTML = `<div style="text-align:center; color:#666; padding:40px;">Занятий на этот день нет</div>`;
+          return;
+        }
+
+        dayEvents.sort((a,b) => (a.slotIdx ?? getSlotIndexFromTime(a.timeStr)) - (b.slotIdx ?? getSlotIndexFromTime(b.timeStr)));
+
+        dayEvents.forEach(ev => {
+          const card = document.createElement('div');
+          card.className = `day-card ${ev.color} ${ev.isDone ? 'is-done' : ''}`;
+          card.innerHTML = `
+            <div class="day-card-header">
+              <div class="day-card-time">${ev.timeStr || ''}</div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <input type="checkbox" class="hw-checkbox" ${ev.isDone ? 'checked' : ''} onclick="toggleDoneStatus(${ev.id}, event)">
+                <div class="day-card-badge">${ev.pair || 'Пара'}</div>
+              </div>
+            </div>
+            <div class="day-card-title">${ev.subject}</div>
+            ${ev.type ? `<div class="day-card-type">${ev.type}</div>` : ''}
+            <div class="day-card-info">
+              ${ev.location ? `<div class="info-row">📍 <span>${ev.location}</span></div>` : ''}
+              ${ev.teacher ? `<div class="info-row">👤 <span>${ev.teacher}</span></div>` : ''}
+              ${ev.homework ? `
+                <div class="hw-row ${ev.isDone ? 'done' : ''}">
+                  <span>📝 <b>ДЗ:</b> ${ev.homework}</span>
+                </div>
+              ` : ''}
+              ${ev.link ? `<div class="info-row"><a href="${ev.link}" target="_blank" class="card-link-btn" onclick="event.stopPropagation()">🔗 Перейти к онлайн-занятию</a></div>` : ''}
+            </div>
+          `;
+          card.addEventListener('click', () => openModalForEdit(ev));
+          container.appendChild(card);
+        });
+      }
+
+      function getBgColor(c) {
+        if (c==='green') return '#153b34';
+        if (c==='blue') return '#1e2942';
+        if (c==='purple') return '#2f2238';
+        if (c==='red') return '#3a1d1d';
+        if (c==='orange') return '#382309';
+        return '#1e1e1e';
+      }
+
+      function getBorderColor(c) {
+        if (c==='green') return '#236356';
+        if (c==='blue') return '#2e3f66';
+        if (c==='purple') return '#4a3559';
+        if (c==='red') return '#5e2f2f';
+        if (c==='orange') return '#8c5311';
+        return '#333333';
+      }
+
+      btnAddEvent.addEventListener('click', () => {
+        editingEventId = null;
+        modalHeading.textContent = 'Новая пара / событие';
+        btnDeleteEvent.style.display = 'none';
+
+        document.getElementById('inp-subject').value = '';
+        document.getElementById('inp-day').value = activeDayIndex;
+        document.getElementById('inp-time-str').value = '10:15 – 11:45';
+        document.getElementById('inp-pair').value = '1 пара';
+        document.getElementById('inp-type').value = '';
+        document.getElementById('inp-location').value = '';
+        document.getElementById('inp-teacher').value = '';
+        document.getElementById('inp-link').value = '';
+        document.getElementById('inp-homework').value = '';
+        document.getElementById('inp-color').value = 'green';
+
+        modalAdd.style.display = 'flex';
+      });
+
+      function openModalForEdit(ev) {
+        editingEventId = ev.id;
+        modalHeading.textContent = 'Редактировать пару';
+        btnDeleteEvent.style.display = 'block';
+
+        document.getElementById('inp-subject').value = ev.subject || '';
+        document.getElementById('inp-day').value = ev.day;
+        document.getElementById('inp-time-str').value = ev.timeStr || '';
+        document.getElementById('inp-pair').value = ev.pair || '';
+        document.getElementById('inp-type').value = ev.type || '';
+        document.getElementById('inp-location').value = ev.location || '';
+        document.getElementById('inp-teacher').value = ev.teacher || '';
+        document.getElementById('inp-link').value = ev.link || '';
+        document.getElementById('inp-homework').value = ev.homework || '';
+        document.getElementById('inp-color').value = ev.color || 'green';
+
+        modalAdd.style.display = 'flex';
+      }
+
+      btnCancelModal.addEventListener('click', () => { modalAdd.style.display = 'none'; });
+
+      btnSaveEvent.addEventListener('click', async () => {
+        const subject = document.getElementById('inp-subject').value.trim();
+        if (!subject) {
+          alert('Введите название предмета!');
+          return;
+        }
+
+        const timeStr = document.getElementById('inp-time-str').value.trim() || '10:15 – 11:45';
+        const slotIdx = getSlotIndexFromTime(timeStr);
+
+        const formData = {
+          weekOffset: currentWeekOffset,
+          subject: subject,
+          day: parseInt(document.getElementById('inp-day').value),
+          slotIdx: slotIdx,
+          span: 1,
+          timeStr: timeStr,
+          pair: document.getElementById('inp-pair').value.trim() || '1 пара',
+          type: document.getElementById('inp-type').value.trim(),
+          location: document.getElementById('inp-location').value.trim(),
+          teacher: document.getElementById('inp-teacher').value.trim(),
+          link: document.getElementById('inp-link').value.trim(),
+          homework: document.getElementById('inp-homework').value.trim(),
+          color: document.getElementById('inp-color').value
+        };
+
+        if (editingEventId !== null) {
+          const idx = events.findIndex(e => e.id === editingEventId);
+          if (idx !== -1) {
+            events[idx] = { ...events[idx], ...formData };
+          }
+        } else {
+          events.push({ id: Date.now(), isDone: false, ...formData });
+        }
+
+        modalAdd.style.display = 'none';
+        await saveEvents();
+        renderCurrentView();
+      });
+
+      btnDeleteEvent.addEventListener('click', async () => {
+        if (editingEventId !== null) {
+          if (confirm('Удалить эту пару?')) {
+            events = events.filter(e => e.id !== editingEventId);
+            modalAdd.style.display = 'none';
+            await saveEvents();
+            renderCurrentView();
+          }
+        }
+      });
+
+      function updateDateTime() {
+        const now = new Date();
+        const utc5Time = now.toLocaleString('ru-RU', { timeZone: 'Asia/Yekaterinburg', hour12: false }).split(', ')[1].slice(0, 5);
+        const utc3Time = now.toLocaleString('ru-RU', { timeZone: 'Europe/Moscow', hour12: false }).split(', ')[1].slice(0, 5);
+
+        document.getElementById('utc5-time').textContent = `UTC+5: ${utc5Time}`;
+        document.getElementById('utc3-time').textContent = `UTC+3: ${utc3Time}`;
+      }
+
+      // Инициализация
+      const initNow = new Date();
+      activeDayIndex = (initNow.getDay() + 6) % 7;
+
+      setInterval(updateDateTime, 1000);
+      updateDateTime();
+
+      loadEvents();
+    </script>
+  </body>
+</html>
