@@ -2616,5 +2616,22 @@
     "link": "",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1788890827479,
+    "isDone": false,
+    "weekOffset": 0,
+    "subject": "Миша Матем ЕГЭ",
+    "day": 1,
+    "slotIdx": 9,
+    "span": 1,
+    "timeStr": "23:00 – 00:00",
+    "pair": "1 пара",
+    "type": "Репетитор",
+    "location": "",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "orange"
   }
 ]
