@@ -2429,5 +2429,22 @@
     "link": "",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1788848704785,
+    "isDone": false,
+    "weekOffset": 0,
+    "subject": "Паша Математика ЕГЭ",
+    "day": 4,
+    "slotIdx": 5,
+    "span": 1,
+    "timeStr": "18:30 – 19:30",
+    "pair": "1 пара",
+    "type": "Репетитор",
+    "location": "",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "orange"
   }
 ]
