@@ -438,7 +438,7 @@
     "teacher": "Тихонов И.Н. М422, (гибридный формат) Мира, 19",
     "link": "https://elearn.urfu.ru/course/view.php?id=4376",
     "homework": "",
-    "isDone": false,
+    "isDone": true,
     "color": "green"
   },
   {
