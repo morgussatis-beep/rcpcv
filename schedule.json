@@ -1924,7 +1924,7 @@
     "id": 1789257600130,
     "weekOffset": 0,
     "day": 6,
-    "slotIdx": 2,
+    "slotIdx": 0,
     "span": 1,
     "timeStr": "Асинхронно / Онлайн",
     "pair": "Онлайн",
@@ -1932,7 +1932,7 @@
     "type": "практические занятия BigBlueButton, BigBlueButton",
     "location": "BigBlueButton, BigBlueButton",
     "teacher": "",
-    "link": "",
+    "link": "https://exam1.urfu.ru/course/view.php?id=2&section=3",
     "homework": "",
     "isDone": false,
     "color": "orange"
