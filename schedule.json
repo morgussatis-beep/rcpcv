@@ -2684,22 +2684,5 @@
     "link": "",
     "homework": "",
     "color": "orange"
-  },
-  {
-    "id": 1789216215131,
-    "isDone": false,
-    "weekOffset": 0,
-    "subject": "Тест",
-    "day": 5,
-    "slotIdx": 5,
-    "span": 1,
-    "timeStr": "17:31 – 18:00",
-    "pair": "1 пара",
-    "type": "",
-    "location": "",
-    "teacher": "",
-    "link": "",
-    "homework": "",
-    "color": "green"
   }
 ]
