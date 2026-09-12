@@ -16,6 +16,9 @@ last_reset_day = None
 
 # Веб-сервер для Render (обязательно слушает порт из переменной окружения PORT)
 class SimpleHandler(BaseHTTPRequestHandler):
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
