@@ -2193,7 +2193,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890872069,
+    "id": 1789457431735,
     "weekOffset": 1,
     "day": 5,
     "slotIdx": 1,
@@ -2210,7 +2210,7 @@
     "color": "blue"
   },
   {
-    "id": 1788890912480,
+    "id": 1789457389070,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 3,
@@ -2227,7 +2227,7 @@
     "color": "blue"
   },
   {
-    "id": 1788890920224,
+    "id": 1789457441056,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 0,
@@ -2244,7 +2244,7 @@
     "color": "blue"
   },
   {
-    "id": 1788890926114,
+    "id": 1789457373109,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 1,
@@ -2261,7 +2261,7 @@
     "color": "green"
   },
   {
-    "id": 1788890882052,
+    "id": 1789457445143,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 3,
@@ -2278,7 +2278,7 @@
     "color": "green"
   },
   {
-    "id": 1788890932001,
+    "id": 1789457403911,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 4,
@@ -2295,7 +2295,7 @@
     "color": "blue"
   },
   {
-    "id": 1788890873394,
+    "id": 1789457417138,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 4,
@@ -2307,12 +2307,12 @@
     "location": "BigBlueButton, BigBlueButton",
     "teacher": "Тихонов И.Н. BigBlueButton, BigBlueButton",
     "link": "https://bbb.urfu.ru/rooms/8h2-94x-hnt-nlk/join",
-    "homework": "",
+    "homework": "Заполнить таблицу и Воронение",
     "isDone": false,
     "color": "green"
   },
   {
-    "id": 1788890839247,
+    "id": 1789457359543,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 3,
@@ -2329,7 +2329,7 @@
     "color": "green"
   },
   {
-    "id": 1788890896974,
+    "id": 1789457403290,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 5,
@@ -2346,7 +2346,7 @@
     "color": "green"
   },
   {
-    "id": 1788890907206,
+    "id": 1789457413609,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 6,
@@ -2363,7 +2363,7 @@
     "color": "purple"
   },
   {
-    "id": 1788890889850,
+    "id": 1789457366243,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 2,
@@ -2374,13 +2374,13 @@
     "type": "практические занятия",
     "location": "",
     "teacher": "Тихонов И.Н.",
-    "link": "https://exam1.urfu.ru/course/view.php?id=2&section=3",
+    "link": "https://elearn.urfu.ru/mod/page/view.php?id=273891",
     "homework": "",
     "isDone": false,
     "color": "blue"
   },
   {
-    "id": 1788890856974,
+    "id": 1789457377980,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 1,
@@ -2397,7 +2397,7 @@
     "color": "blue"
   },
   {
-    "id": 1788890861486,
+    "id": 1789457363917,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 2,
@@ -2414,7 +2414,7 @@
     "color": "blue"
   },
   {
-    "id": 1788890840497,
+    "id": 1789457380249,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 1,
@@ -2431,7 +2431,7 @@
     "color": "green"
   },
   {
-    "id": 1788890865255,
+    "id": 1789457372396,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 4,
@@ -2448,7 +2448,7 @@
     "color": "green"
   },
   {
-    "id": 1788890880928,
+    "id": 1789457426453,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 0,
@@ -2465,7 +2465,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890893756,
+    "id": 1789457385873,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 1,
@@ -2482,10 +2482,10 @@
     "color": "orange"
   },
   {
-    "id": 1788890852444,
+    "id": 1789457430075,
     "weekOffset": 1,
     "day": 6,
-    "slotIdx": 2,
+    "slotIdx": 0,
     "span": 1,
     "timeStr": "Асинхронно / Онлайн",
     "pair": "Онлайн",
@@ -2493,30 +2493,13 @@
     "type": "практические занятия BigBlueButton, BigBlueButton",
     "location": "BigBlueButton, BigBlueButton",
     "teacher": "",
-    "link": "",
+    "link": "https://exam1.urfu.ru/course/view.php?id=2&section=3",
     "homework": "",
     "isDone": false,
     "color": "orange"
   },
   {
-    "id": 1788890860239,
-    "isDone": false,
-    "weekOffset": 1,
-    "subject": "Андрей Матем ЕГЭ",
-    "day": 5,
-    "slotIdx": 2,
-    "span": 1,
-    "timeStr": "12:00 – 13:00",
-    "pair": "Занятие",
-    "type": "Репетитор",
-    "location": "",
-    "teacher": "",
-    "link": "",
-    "homework": "",
-    "color": "orange"
-  },
-  {
-    "id": 1788890845160,
+    "id": 1789457385320,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Егор Матем ЕГЭ",
@@ -2533,24 +2516,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890844742,
-    "isDone": false,
-    "weekOffset": 1,
-    "subject": "Миша Матем ЕГЭ",
-    "day": 5,
-    "slotIdx": 2,
-    "span": 1,
-    "timeStr": "13:00 – 14:00",
-    "pair": "Занятие",
-    "type": "Репетитор",
-    "location": "",
-    "teacher": "",
-    "link": "",
-    "homework": "",
-    "color": "orange"
-  },
-  {
-    "id": 1788890879099,
+    "id": 1789457367568,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Паша Математика ЕГЭ",
@@ -2567,7 +2533,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890868276,
+    "id": 1789457377524,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Богдан Физ ОГЭ",
@@ -2584,7 +2550,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890889044,
+    "id": 1789457356743,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Богдан Физ ОГЭ",
@@ -2601,7 +2567,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890863758,
+    "id": 1789457372402,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Макар ОГЭ Физ+Мат",
@@ -2618,7 +2584,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890885936,
+    "id": 1789457391936,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Андрей Матем ЕГЭ",
@@ -2635,7 +2601,7 @@
     "color": "orange"
   },
   {
-    "id": 1788890927757,
+    "id": 1789457415874,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Миша Матем ЕГЭ",
