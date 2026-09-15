@@ -2108,23 +2108,6 @@
     "color": "orange"
   },
   {
-    "id": 1788848412113,
-    "isDone": false,
-    "weekOffset": 0,
-    "subject": "Миша Матем ЕГЭ",
-    "day": 5,
-    "slotIdx": 2,
-    "span": 1,
-    "timeStr": "13:00 – 14:00",
-    "pair": "Занятие",
-    "type": "Репетитор",
-    "location": "",
-    "teacher": "",
-    "link": "",
-    "homework": "",
-    "color": "orange"
-  },
-  {
     "id": 1788848704785,
     "isDone": false,
     "weekOffset": 0,
@@ -2177,7 +2160,7 @@
   },
   {
     "id": 1788890741575,
-    "isDone": true,
+    "isDone": false,
     "weekOffset": 0,
     "subject": "Макар ОГЭ Физ+Мат",
     "day": 1,
