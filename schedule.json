@@ -2616,22 +2616,5 @@
     "link": "",
     "homework": "",
     "color": "orange"
-  },
-  {
-    "id": 1789812873530,
-    "isDone": false,
-    "weekOffset": 0,
-    "subject": "111",
-    "day": 5,
-    "slotIdx": 4,
-    "span": 1,
-    "timeStr": "15:30 – 15:45",
-    "pair": "1 пара",
-    "type": "",
-    "location": "",
-    "teacher": "",
-    "link": "",
-    "homework": "",
-    "color": "green"
   }
 ]
