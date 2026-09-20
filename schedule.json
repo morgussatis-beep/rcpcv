@@ -2193,7 +2193,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457431735,
+    "id": 1789893070986,
     "weekOffset": 1,
     "day": 5,
     "slotIdx": 1,
@@ -2210,7 +2210,7 @@
     "color": "blue"
   },
   {
-    "id": 1789457389070,
+    "id": 1789893052475,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 3,
@@ -2227,7 +2227,7 @@
     "color": "blue"
   },
   {
-    "id": 1789457441056,
+    "id": 1789893067239,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 0,
@@ -2244,7 +2244,7 @@
     "color": "blue"
   },
   {
-    "id": 1789457373109,
+    "id": 1789893053336,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 1,
@@ -2261,7 +2261,7 @@
     "color": "green"
   },
   {
-    "id": 1789457445143,
+    "id": 1789893049124,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 3,
@@ -2278,7 +2278,7 @@
     "color": "green"
   },
   {
-    "id": 1789457403911,
+    "id": 1789893027207,
     "weekOffset": 1,
     "day": 1,
     "slotIdx": 4,
@@ -2295,7 +2295,7 @@
     "color": "blue"
   },
   {
-    "id": 1789457417138,
+    "id": 1789893066306,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 4,
@@ -2312,7 +2312,7 @@
     "color": "green"
   },
   {
-    "id": 1789457359543,
+    "id": 1789893052611,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 3,
@@ -2329,7 +2329,7 @@
     "color": "green"
   },
   {
-    "id": 1789457403290,
+    "id": 1789893042106,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 5,
@@ -2346,7 +2346,7 @@
     "color": "green"
   },
   {
-    "id": 1789457413609,
+    "id": 1789893117904,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 6,
@@ -2363,7 +2363,7 @@
     "color": "purple"
   },
   {
-    "id": 1789457366243,
+    "id": 1789893053011,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 2,
@@ -2380,7 +2380,7 @@
     "color": "blue"
   },
   {
-    "id": 1789457377980,
+    "id": 1789893099488,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 1,
@@ -2397,7 +2397,7 @@
     "color": "blue"
   },
   {
-    "id": 1789457363917,
+    "id": 1789893032697,
     "weekOffset": 1,
     "day": 4,
     "slotIdx": 2,
@@ -2414,7 +2414,7 @@
     "color": "blue"
   },
   {
-    "id": 1789457380249,
+    "id": 1789893057254,
     "weekOffset": 1,
     "day": 3,
     "slotIdx": 1,
@@ -2431,7 +2431,7 @@
     "color": "green"
   },
   {
-    "id": 1789457372396,
+    "id": 1789893045981,
     "weekOffset": 1,
     "day": 0,
     "slotIdx": 4,
@@ -2448,7 +2448,7 @@
     "color": "green"
   },
   {
-    "id": 1789457426453,
+    "id": 1789893076680,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 0,
@@ -2465,7 +2465,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457385873,
+    "id": 1789893059365,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 1,
@@ -2482,7 +2482,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457430075,
+    "id": 1789893090295,
     "weekOffset": 1,
     "day": 6,
     "slotIdx": 0,
@@ -2499,7 +2499,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457385320,
+    "id": 1789893090596,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Егор Матем ЕГЭ",
@@ -2516,7 +2516,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457367568,
+    "id": 1789893055552,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Паша Математика ЕГЭ",
@@ -2533,7 +2533,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457377524,
+    "id": 1789893114835,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Богдан Физ ОГЭ",
@@ -2550,7 +2550,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457356743,
+    "id": 1789893043616,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Богдан Физ ОГЭ",
@@ -2567,7 +2567,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457372402,
+    "id": 1789893032737,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Макар ОГЭ Физ+Мат",
@@ -2584,7 +2584,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457391936,
+    "id": 1789893065157,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Андрей Матем ЕГЭ",
@@ -2601,7 +2601,7 @@
     "color": "orange"
   },
   {
-    "id": 1789457415874,
+    "id": 1789893104006,
     "isDone": false,
     "weekOffset": 1,
     "subject": "Миша Матем ЕГЭ",
