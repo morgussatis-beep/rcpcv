@@ -2769,5 +2769,22 @@
     "link": "",
     "homework": "",
     "color": "green"
+  },
+  {
+    "id": 1790941270160,
+    "isDone": false,
+    "weekOffset": 0,
+    "subject": "ДПО",
+    "day": 3,
+    "slotIdx": 5,
+    "span": 1,
+    "timeStr": "18:30 – 19:30",
+    "pair": "1 пара",
+    "type": "практические занятия",
+    "location": "ЦОМ",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "green"
   }
 ]
