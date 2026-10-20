@@ -5676,5 +5676,22 @@
     "link": "",
     "homework": "",
     "color": "green"
+  },
+  {
+    "id": 1792517001346,
+    "isDone": false,
+    "weekOffset": 1,
+    "subject": "ДПО",
+    "day": 1,
+    "slotIdx": 6,
+    "span": 1,
+    "timeStr": "19:15 – 20:40",
+    "pair": "7 пара",
+    "type": "практические занятия",
+    "location": "ЦОМ",
+    "teacher": "Ведмидь, Старостин",
+    "link": "",
+    "homework": "",
+    "color": "green"
   }
 ]
