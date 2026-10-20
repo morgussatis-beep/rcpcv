@@ -5710,5 +5710,22 @@
     "link": "",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1792517126944,
+    "isDone": false,
+    "weekOffset": 1,
+    "subject": "УралХимМаш",
+    "day": 1,
+    "slotIdx": 0,
+    "span": 1,
+    "timeStr": "08:00 – 15:00",
+    "pair": "1 пара",
+    "type": "",
+    "location": "7 Ч",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "orange"
   }
 ]
