@@ -5761,5 +5761,22 @@
     "link": "https://miro.com/app/board/uXjVHtnFQRk=/",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1792517323862,
+    "isDone": false,
+    "weekOffset": 1,
+    "subject": "Егор 11 Класс Мат",
+    "day": 1,
+    "slotIdx": 7,
+    "span": 1,
+    "timeStr": "21:00 – 22:00",
+    "pair": "1 пара",
+    "type": "",
+    "location": "",
+    "teacher": "",
+    "link": "https://miro.com/app/board/uXjVHtnFQRk=/",
+    "homework": "",
+    "color": "orange"
   }
 ]
