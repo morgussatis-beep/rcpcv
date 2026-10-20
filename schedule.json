@@ -5795,5 +5795,22 @@
     "link": "https://miro.com/app/board/uXjVHtnFQRk=/",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1792517372202,
+    "isDone": false,
+    "weekOffset": 1,
+    "subject": "Андрей 11 класс Мат",
+    "day": 1,
+    "slotIdx": 9,
+    "span": 1,
+    "timeStr": "23:00 – 00:00",
+    "pair": "1 пара",
+    "type": "",
+    "location": "",
+    "teacher": "",
+    "link": "https://miro.com/app/board/uXjVHtnFQRk=/",
+    "homework": "",
+    "color": "orange"
   }
 ]
