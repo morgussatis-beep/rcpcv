@@ -5744,5 +5744,22 @@
     "link": "",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1792517293768,
+    "isDone": false,
+    "weekOffset": 1,
+    "subject": "Макар 8 класс ФизМат",
+    "day": 1,
+    "slotIdx": 6,
+    "span": 1,
+    "timeStr": "19:00 – 21:00",
+    "pair": "1 пара",
+    "type": "",
+    "location": "",
+    "teacher": "",
+    "link": "https://miro.com/app/board/uXjVHtnFQRk=/",
+    "homework": "",
+    "color": "orange"
   }
 ]
