@@ -5778,5 +5778,22 @@
     "link": "https://miro.com/app/board/uXjVHtnFQRk=/",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1792517352254,
+    "isDone": false,
+    "weekOffset": 1,
+    "subject": "Михаил 11 Класс Мат",
+    "day": 1,
+    "slotIdx": 8,
+    "span": 1,
+    "timeStr": "22:00 – 23:00",
+    "pair": "1 пара",
+    "type": "",
+    "location": "",
+    "teacher": "",
+    "link": "https://miro.com/app/board/uXjVHtnFQRk=/",
+    "homework": "",
+    "color": "orange"
   }
 ]
