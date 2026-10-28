@@ -5336,5 +5336,22 @@
     "link": "",
     "homework": "",
     "color": "blue"
+  },
+  {
+    "id": 1793167263267,
+    "isDone": false,
+    "weekOffset": 1,
+    "subject": "Заказы",
+    "day": 1,
+    "slotIdx": 3,
+    "span": 1,
+    "timeStr": "14:15 – 19:00",
+    "pair": "1 пара",
+    "type": "",
+    "location": "",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "green"
   }
 ]
