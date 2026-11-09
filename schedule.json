@@ -2395,5 +2395,22 @@
     "link": "",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1794194628262,
+    "isDone": false,
+    "weekOffset": 0,
+    "subject": "Богдан Физ ОГЭ",
+    "day": 5,
+    "slotIdx": 6,
+    "span": 1,
+    "timeStr": "20:00 – 22:00",
+    "pair": "1 пара",
+    "type": "Репетитор",
+    "location": "",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "orange"
   }
 ]
