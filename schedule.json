@@ -2327,5 +2327,22 @@
     "link": "",
     "homework": "",
     "color": "orange"
+  },
+  {
+    "id": 1794194371076,
+    "isDone": false,
+    "weekOffset": 0,
+    "subject": "Макар Матан+Физ",
+    "day": 1,
+    "slotIdx": 6,
+    "span": 1,
+    "timeStr": "19:00-20:00",
+    "pair": "1 пара",
+    "type": "Репетитор",
+    "location": "",
+    "teacher": "",
+    "link": "",
+    "homework": "",
+    "color": "orange"
   }
 ]
